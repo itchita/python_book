@@ -1,9 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import db, string, random
 from datetime import timedelta
+from book import book_bp
+from user import user_bp
 
 app = Flask(__name__)
 app.secret_key=''.join(random.choices(string.ascii_letters, k=256))
+
+app.register_blueprint(book_bp)
+app.register_blueprint(user_bp)
 
 @app.route('/', methods=['GET'])
 def index():
