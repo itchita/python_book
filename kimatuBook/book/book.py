@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+import db
 
 # Blueprint インスタンスを作成
 # 第1引数は Blueprint の名前
@@ -22,4 +23,34 @@ def book_list():
 
     # 返すHTMLは templates フォルダ以降のパスを書きます。
     return render_template('book/list.html', books=book_list)
+
+@book_bp.route('/addition')
+def book_addition():
+    return render_template('addition/addition.html')
+
+@book_bp.route('/addition', methods=['POST'])
+def addition_button():
+    
+    # db追加
+    title = request.form.get('title')
+    author = request.form.get('author')
+    publisher =  request.form.get('publisher')
+    publicationYear = request.form.get('publicationYear')
+
+    # if book_name == '':
+    #     error = 'ユーザ名が未入力です。'
+    #     return render_template('register.html', error=error, user_name=book_name, password=password)
+    # if password == '':
+    #     error = 'パスワードが未入力です。'
+    #     return render_template('register.html', error=error)
+
+    count = db.insert_book(title,author,publisher,publicationYear)
+
+    # msg作成
+    if count == 1:
+        return render_template('book/list.html')
+    else:
+        return render_template('addition/addition.html')
+
+
 

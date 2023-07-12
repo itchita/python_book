@@ -74,5 +74,10 @@ def register_exe():
         error = '登録に失敗しました。'
         return render_template('register.html', error=error)
 
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+    
