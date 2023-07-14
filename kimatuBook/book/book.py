@@ -67,3 +67,11 @@ def delete_exe():
 @book_bp.route('/update')
 def book_update():
     return render_template('update/update.html')
+
+@book_bp.route('/updates', methods=['POST'])
+def update_exe():
+    id=request.form.get('id')
+    publisher=request.form.get('publisher')
+    
+    db.book_update(publisher,id)
+    return render_template('mypage.html')

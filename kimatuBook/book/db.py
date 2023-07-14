@@ -123,4 +123,15 @@ def delete_book(id):
     
     return count   
         
+def book_update(publisher, id):
+    connection = get_connection()
+    cursor = connection.cursor()
+    
+    sql="update books set publisher = %s where id = %s"
         
+    cursor.execute(sql, (publisher, id))
+    connection.commit() 
+    
+    cursor.close()
+    connection.close()
+       
