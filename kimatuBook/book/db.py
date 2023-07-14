@@ -91,3 +91,36 @@ def insert_book(title, author, publisher, publication_year):
     
     return count
 
+def book_list():
+    connection = get_connection()
+    cursor = connection.cursor()
+    sql = "SELECT * FROM books ORDER BY id ASC"
+    
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    
+    cursor.close()
+    connection.close()
+    return rows
+
+def delete_book(id):
+    connection = get_connection()
+    cursor = connection.cursor()
+    
+    try:
+        sql = " delete from books where id = %s"
+        
+        cursor.execute(sql, (id,))
+        count = cursor.rowcount
+        connection.commit()
+        
+    except psycopg2.DatabaseError:
+        count = 0
+        
+    finally:
+        cursor.close()
+        connection.close()
+    
+    return count   
+        
+        

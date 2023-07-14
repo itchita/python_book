@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 import db
+import psycopg2
 
 # Blueprint インスタンスを作成
 # 第1引数は Blueprint の名前
@@ -12,17 +13,10 @@ book_bp = Blueprint('book', __name__, url_prefix='/book')
 # このメソッドの URL は /book/list となります。
 @book_bp.route('/list')
 def book_list():
-    book_list = [
-        ('よく分かるPython', '佐々木 磨生', 'MCL出版', 200),
-        ('LinuC 詳解', '細川 潤哉', 'MCL出版', 400),
-        ('Servlet 入門', '高橋 洋平', 'ジョビ出版', 250),
-        ('Flask 入門', '高橋 洋平', 'ジョビ出版', 150),
-        ('よく分かるUML', '細川 潤哉', 'MCL出版', 220),
-        ('Django 入門', '佐々木 磨生', '龍澤出版', 350),
-    ]
+    book_all = db.book_list()
 
     # 返すHTMLは templates フォルダ以降のパスを書きます。
-    return render_template('book/list.html', books=book_list)
+    return render_template('book/list.html', books=book_all)
 
 @book_bp.route('/addition')
 def book_addition():
@@ -52,5 +46,24 @@ def addition_button():
     else:
         return render_template('addition/addition.html')
 
+@book_bp.route('/delete')
+def book_delete():
+    return render_template('delete/delete.html')
+
+@book_bp.route('/delete2', methods=['POST'])
+def delete_exe():
+  id = request.form.get('id')
+  
+  count = db.delete_book(id)
+  
+      # msg作成
+  if count == 1:
+        return render_template('mypage.html')
+  else:
+        return render_template('delete/delete.html')
 
 
+
+@book_bp.route('/update')
+def book_update():
+    return render_template('update/update.html')

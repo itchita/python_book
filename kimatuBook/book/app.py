@@ -3,6 +3,7 @@ import db, string, random
 from datetime import timedelta
 from book import book_bp
 from user import user_bp
+import book
 
 app = Flask(__name__)
 app.secret_key=''.join(random.choices(string.ascii_letters, k=256))
@@ -80,4 +81,3 @@ def register_exe():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
