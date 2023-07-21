@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, url_for
 import db
 import psycopg2
 
@@ -42,7 +42,7 @@ def addition_button():
 
     # msg作成
     if count == 1:
-        return render_template('book/list.html')
+          return render_template('mypage.html')
     else:
         return render_template('addition/addition.html')
 
@@ -75,3 +75,15 @@ def update_exe():
     
     db.book_update(publisher,id)
     return render_template('mypage.html')
+
+
+@book_bp.route('/search')
+def book_search():
+    return render_template('search/search.html')
+
+@book_bp.route('/search2', methods=['POST'])
+def search_exe():
+    title = request.form.get('title')
+    search_results = db.search_book(title)
+    book_list = db.book_list()
+    return render_template('book/list.html', books=search_results)

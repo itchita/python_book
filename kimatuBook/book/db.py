@@ -134,4 +134,16 @@ def book_update(publisher, id):
     
     cursor.close()
     connection.close()
-       
+ 
+def search_book(title):
+    connection = get_connection()
+    cursor = connection.cursor()
+    sql = "SELECT * FROM books WHERE title LIKE %s"
+    
+    title_pattern="%" + title + "%"
+    cursor.execute(sql, (title_pattern,))
+    results = cursor.fetchall()
+    
+    cursor.close()
+    connection.close()
+    return results      
