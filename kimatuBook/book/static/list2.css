@@ -1,0 +1,35 @@
+
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #282c34;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 36px;
+    color: #61dafb;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  .table {
+    margin: 0 auto;
+    max-width: 800px;
+    color: #fff;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    border: 2px solid #61dafb;
+  }
+  th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #61dafb;
+  }
+  tbody tr {
+    transition: background-color 0.2s ease;
+  }
+  tbody tr:hover {
+    background-color: #545454;
+  }

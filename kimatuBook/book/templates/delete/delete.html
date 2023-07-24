@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="{{url_for('static',filename='/delete.css')}}">    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
 </head>
 <body>
     <h1>削除</h1>
+    <h1>削除したいIDを入力してください。</h1>
     <form action = "{{url_for('book.delete_exe')}}" method = "post">
         <input type= "text" name = "id"><br>
         <button type= "submit">削除</button>

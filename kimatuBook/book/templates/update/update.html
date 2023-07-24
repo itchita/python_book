@@ -4,6 +4,7 @@
     <title>図書管理アプリ - 本の更新</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+<link rel="stylesheet" href="{{url_for('static',filename='/updete.css')}}">
 <body>
     <h1>図書管理アプリ - 本の更新</h1>
     <form action="{{url_for('book.update_exe')}}", method="post">
