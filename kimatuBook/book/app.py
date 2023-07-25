@@ -75,9 +75,15 @@ def register_exe():
         error = '登録に失敗しました。'
         return render_template('register.html', error=error)
 
+#戻る
+@app.route('/back_form')
+def back_form():
+    return render_template('mypage.html')
 
 
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
